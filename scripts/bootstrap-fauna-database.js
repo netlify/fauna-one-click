@@ -7,7 +7,7 @@ const q = faunadb.query
 
 if (!process.env.FAUNADB_SERVER_SECRET) {
   console.log('No FAUNADB_SERVER_SECRET found')
-  console.log('Please run `netlify addons:create fauna-staging` and redeploy')
+  console.log('Please run `netlify addons:create fauna` and redeploy')
   return false
 }
 
