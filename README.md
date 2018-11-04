@@ -138,6 +138,27 @@ Lets rock and roll.
 
     To simulate our function endpoints locally, we need to setup a [proxy](https://github.com/netlify/create-react-app-lambda/blob/master/package.json#L19-L26) for webpack to use.
 
+    **Note**: If you are using CreateReactApp v2 and above, follow the following _CRA v2 and above_ steps to add proxy settings, else continue to _CRA below v2_
+
+    **CRA v2 and above**
+    1. Install http-proxy-middleware `npm i --save http-proxy-middleware`
+    2. Create a _setupProxy.js_ file inside your **src** folder
+    3. Put the following code inside `setupProxy.js` 
+    ```javascript
+    const proxy = require('http-proxy-middleware');
+
+    module.exports = function(app) {
+      app.use(proxy('/.netlify/functions/', { 
+        target: 'http://localhost:9000/',
+        "pathRewrite": {
+          "^/\\.netlify/functions": ""
+        }
+      }));
+    };
+    ```
+
+    **CRA below v2**
+    
     In `package.json` add:
 
     ```json
